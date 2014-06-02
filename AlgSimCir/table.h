@@ -1,0 +1,32 @@
+extern gsl_matrix *A;
+extern gsl_matrix *diag_A;
+extern gsl_vector *x;
+extern gsl_vector *dx;
+extern gsl_vector *b;
+extern gsl_matrix *tilda_G;
+extern gsl_matrix *tilda_C;
+
+extern int data;
+extern int a1;
+extern int a2;
+extern HASHTBL *hashtbl;
+extern cs *cs_A;
+extern cs *cs_C;
+extern double *cs_b;
+extern double *cs_x;
+extern int nonZeroElem;
+
+HASHTBL *populateHashtbl(circuitList *node);
+void allocateSystem();
+void allocateTransientSystem();
+void allocateCSSystem();
+void populateSystem(circuitList *n, HASHTBL *hashtbl, gsl_matrix * A, gsl_vector * b);
+void populateTransientSystem(circuitList *n, HASHTBL *hashtbl, gsl_matrix * tilda_G, gsl_matrix * tilda_C, gsl_vector * b);
+void populateCSSystem(circuitList *n, HASHTBL *hashtbl, cs *cs_A);
+void calcNonZeroElem(circuitList *n, HASHTBL *hashtbl);
+void choleskySolution();
+void luSolution();
+void solveSystem();
+void solveCSSystem();
+void solveTransientSystem(circuitList *n);
+void populateB(circuitList *n, gsl_vector *tran, float i, int k, float prevVal, float value);
